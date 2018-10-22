@@ -5,6 +5,8 @@
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
+    <context:annotation-config/>
+
     <bean class="quoters.TerminatorQuoter" id="terminalQuoter">
         <property name="message" value="Message"/>
     </bean>

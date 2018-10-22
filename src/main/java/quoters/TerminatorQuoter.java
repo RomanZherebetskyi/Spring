@@ -1,20 +1,25 @@
 package quoters;
 
-public class TerminatorQuoter implements Quotable {
+import org.springframework.beans.factory.InitializingBean;
 
-    static {
-        System.out.println("Static print");
-    }
+import javax.annotation.PostConstruct;
 
-    {
-        System.out.println("Non-static print");
-    }
+@Profiling
+public class TerminatorQuoter implements Quotable, InitializingBean {
 
     @InjectRandomInt(min = 2, max = 7)
     private int repeat;
 
     private String message;
 
+    public TerminatorQuoter() {
+        System.out.println("Constructor..., repeat = " + repeat);
+    }
+
+    @PostConstruct
+    public void init() {
+        System.out.println("Init method... , repeat = " + repeat);
+    }
 
     public void setMessage(String message) {
         this.message = message;
@@ -22,10 +27,14 @@ public class TerminatorQuoter implements Quotable {
 
     @Override
     public void sayQuote() {
-        System.out.println(repeat);
         for (int i = 0; i < repeat; i++) {
             System.out.println(message);
         }
     }
 
+    @Override
+    public void afterPropertiesSet() {
+        System.out.println("afterPropertiesSet (InitializingBean) method..., repeat = " + repeat);
+
+    }
 }

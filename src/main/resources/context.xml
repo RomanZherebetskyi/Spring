@@ -13,5 +13,7 @@
 
     <bean class="quoters.InjectRandomIntAnnotationBeanPostProcessor"/>
 
-    <bean class="quoters.EternalQuoter" id="eternalQuoter"/>
+    <bean class="quoters.ProfilingHandlerBeanPostProcessor"/>
+
+    <!--<bean class="quoters.EternalQuoter" id="eternalQuoter"/>-->
 </beans>

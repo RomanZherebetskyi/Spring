@@ -13,12 +13,12 @@ public class TerminatorQuoter implements Quotable, InitializingBean {
     private String message;
 
     public TerminatorQuoter() {
-        System.out.println("Constructor..., repeat = " + repeat);
+        System.out.println("Constructor..., repeat = " + repeat + ", message - " + message);
     }
 
     @PostConstruct
     public void init() {
-        System.out.println("Init method... , repeat = " + repeat);
+        System.out.println("Init method... , repeat = " + repeat + ", message - " + message);
     }
 
     public void setMessage(String message) {
@@ -34,7 +34,7 @@ public class TerminatorQuoter implements Quotable, InitializingBean {
 
     @Override
     public void afterPropertiesSet() {
-        System.out.println("afterPropertiesSet (InitializingBean) method..., repeat = " + repeat);
+        System.out.println("afterPropertiesSet (InitializingBean) method..., repeat = " + repeat + ", message - " + message);
 
     }
 }

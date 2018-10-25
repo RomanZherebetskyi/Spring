@@ -7,7 +7,7 @@
 
     <context:annotation-config/>
 
-    <bean class="quoters.TerminatorQuoter" id="terminalQuoter">
+    <bean class="quoters.TerminatorQuoter" id="terminalQuoter" init-method="customInit">
         <property name="message" value="Message"/>
     </bean>
 

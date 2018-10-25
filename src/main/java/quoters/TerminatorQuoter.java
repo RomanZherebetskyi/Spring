@@ -16,13 +16,22 @@ public class TerminatorQuoter implements Quotable, InitializingBean {
         System.out.println("Constructor..., repeat = " + repeat + ", message - " + message);
     }
 
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    @Override
+    public void afterPropertiesSet() {
+        System.out.println("afterPropertiesSet (InitializingBean) method..., repeat = " + repeat + ", message - " + message);
+
+    }
     @PostConstruct
     public void init() {
         System.out.println("Init method... , repeat = " + repeat + ", message - " + message);
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void customInit() {
+        System.out.println("Custom init method... , repeat = " + repeat + ", message - " + message);
     }
 
     @Override
@@ -32,9 +41,4 @@ public class TerminatorQuoter implements Quotable, InitializingBean {
         }
     }
 
-    @Override
-    public void afterPropertiesSet() {
-        System.out.println("afterPropertiesSet (InitializingBean) method..., repeat = " + repeat + ", message - " + message);
-
-    }
 }

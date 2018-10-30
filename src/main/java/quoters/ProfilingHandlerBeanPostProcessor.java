@@ -33,11 +33,10 @@ public class ProfilingHandlerBeanPostProcessor implements BeanPostProcessor {
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
         Class beanClass = map.get(beanName);
         if (beanClass != null) {
-            System.out.println("Creating proxy for " + beanName);
-            Object newProxyInstance = Proxy.newProxyInstance(beanClass.getClassLoader(), beanClass.getInterfaces(), (proxy, method, args) ->
+            return Proxy.newProxyInstance(beanClass.getClassLoader(), beanClass.getInterfaces(), (proxy, method, args) ->
             {
                 if (profilingController.isEnabled()) {
-                    System.out.println("Profiling...");
+                    System.out.println("Profiling from method " + method.getName() + "...");
                     long before = System.nanoTime();
                     Object retVal = method.invoke(bean, args);
                     long after = System.nanoTime();
@@ -47,8 +46,6 @@ public class ProfilingHandlerBeanPostProcessor implements BeanPostProcessor {
                 }
                 return method.invoke(bean, args);
             });
-            System.out.println("Address before - " + bean.toString() + ", address after - " + newProxyInstance.toString());
-            return newProxyInstance;
         }
         return bean;
     }
